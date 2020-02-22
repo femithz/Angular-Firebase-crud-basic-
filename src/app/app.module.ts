@@ -2,15 +2,34 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { environment } from 'src/environments/environment';
+import {FormsModule} from '@angular/forms';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { EmployeesComponent } from './employees/employees.component';
+import { EmployeeComponent } from './employees/employee/employee.component';
+import { EmployeeListComponent } from './employees/employee-list/employee-list.component';
+import { EmployeeService } from './shared/employee.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    EmployeesComponent,
+    EmployeeComponent,
+    EmployeeListComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(), // ToastrModule added
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
+    FormsModule,
+    
   ],
-  providers: [],
+  providers: [EmployeeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
